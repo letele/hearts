@@ -90,7 +90,7 @@ export const withHeartsContext = Component => props => {
     const eqArray = (a,b) => 
     a.length && b.length && a.join() === b.join()
 
-    const delay = 150
+    const delay = 500
             
 
     // Player (South)
