@@ -1,0 +1,78 @@
+:root{
+    --card-table: calc(0.41*100vmax);
+    --card-height: calc(0.21*var(--card-table));
+    --card-width: calc(0.15*var(--card-table));
+    --top:4%;
+}
+
+#hearts-board{
+    position: relative;
+    height: var(--card-table); 
+    width: calc(0.75*100vmax);
+    min-width: calc(0.45*100vmax);
+    margin: auto;
+}
+
+#hearts-board *{
+    box-sizing: border-box;  
+    margin: 0; padding: 0;
+    list-style: none;
+}
+
+
+#hearts-board .hands{
+    position: absolute;
+}
+
+#west-cards, #east-cards{
+    width: var(--card-width);
+    top: var(--top); height: 71.45%;
+}
+#east-cards{  right: 5%; }
+#west-cards{  left: 5%; }
+
+#north-cards{
+    top: var(--top); left: 26.5%;
+    height: var(--card-height); width: 47%;
+}
+
+#south-cards{
+    bottom: 0; left: 9.5%;
+    height: var(--card-height); width: 81%;
+}
+
+#hearts-board .card{
+    position: absolute;
+    height: var(--card-height);
+    width: var(--card-width);
+}
+#hearts-board h3{
+    position: absolute;
+    font-size: 1.3vmax;
+    color: #f5f5f5;
+    font-family: arial;
+    text-shadow: #313131 3px 3px 7px;
+}
+
+#south-name{ left: 21%; bottom: 24%; }
+#north-name{ left:26.5% }
+#west-name{ left:5% }
+#east-name{ right:5% }
+
+#hearts-board .table-card{
+    height: var(--card-height);
+    width: var(--card-width);
+    position: absolute;
+}
+#north-card{ left:44%; top: 30%; font-size: 1.4vmax;}
+#south-card{ left:44%; top: 50%; font-size: 1.4vmax;}
+#west-card{ left:36.5%; top: 40%; font-size: 1.4vmax;}
+#east-card{ left:51.5%; top: 40%; font-size: 1.4vmax;}
+
+#arrow {
+    position: absolute;
+    left: 45%; bottom: 30%;
+    color: rgb(214, 214, 214);
+    font-size: 5.4vmax;
+}
+

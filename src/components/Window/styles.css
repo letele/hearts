@@ -1,0 +1,320 @@
+body {    
+    overflow: hidden;
+}
+:root{
+    --blue:#0078d7;
+    --info-bg:#f7f2f2;
+    --score-border:#0000001c;
+}
+#window{
+    border: 1px solid #00000060;
+    position: absolute;
+    left: 1%; right: 1%;
+    overflow: hidden;
+    width: 98%; height: 98%;
+    min-width: 600px;
+}
+#window > header, #window > footer,
+#menu-bar button,.info-card {
+    font-family: Arial;
+    font-size: 9pt;
+}
+#window > header, #window > footer,
+#menu-bar > li>ul{
+    background: #ececec;
+}
+#title-bar{ 
+    padding: 3px 3px 3px 6px;
+}
+#window ul{ 
+    margin: 0; padding: 0;
+}
+#menu-bar{ 
+    display: flex; 
+    padding-left: 3px;
+}
+#menu-bar li{ 
+    list-style: none; 
+}
+#menu-bar button{
+    border: 1px solid transparent;
+    background: transparent;
+}
+#menu-bar button:hover{
+    border: 1px solid #46bafda4;
+    background: #0a7dc059;
+}
+#menu-bar > li>ul{
+    border: 1px solid #00000073;
+    position: absolute;
+    width: 150px;
+    white-space: nowrap;
+    z-index: 1;
+}
+#menu-bar > li>ul>li{
+    margin:3px;
+    padding: 2px;
+}
+#menu-bar > li>ul>li:hover{
+    background: #02aac033;
+    cursor:default;
+}
+#window > footer{
+    position: absolute; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%; height: 21px;
+}
+#window > footer span{
+    margin-right: 30px; 
+}
+#window >section{
+    width: 100%;
+    height: calc(100% - 61px);
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: flex;
+}
+
+
+#window .overlayer{
+    background: #0000009f;
+    position: absolute;
+    height: 100%; width: 100%;
+    top: 0; z-index: 2;
+}
+.info-card{
+    background: var(--info-bg);
+    border: 1px solid #08808050;
+    width: fit-content;
+    min-width: 210px;
+    margin: 108px auto 0 auto;   
+}
+.info-card *{
+    list-style: none;
+}
+.info-card header{
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.info-card  header>span{
+    margin-left: 5px;
+}
+.info-card  header> button{
+    border: none;
+    background: none;
+    font-size: 15pt;
+    height: 100%;
+}
+.info-card  header> button:hover{
+    background: #ff0000;
+    color: #fff;
+}
+.info-card section{
+    padding:5px 15px;
+}
+.info-card footer{
+    text-align: right;
+    padding: 0.5em;
+}
+.info-card footer>button{
+    border: 1px solid #868686;
+    background:#8686863d;
+    font-size: 8pt;
+    text-align: center;
+    padding: 0.2em 0.5em;
+    min-width: 75px;
+    margin:auto 12px;
+}
+.info-card footer>button:first-child{
+    margin-right: 6px;
+}
+.info-card footer>button:hover{
+    border: 1px solid var(--blue);
+}
+
+
+#appearance{
+    width: 400px;
+}
+#appearance ul{
+    background: #fff;
+    border: 1px solid #00000054;
+    display: flex;
+    justify-content: space-around;
+    margin: 5px auto;
+}
+#appearance .deck-background {
+    height: calc(0.21*400px);
+    width: calc(0.15*400px); 
+    margin-top: 10px;
+    padding: 10px;
+    margin-bottom: -3px;
+    border: 3px solid transparent;
+}
+#appearance .wrapper{
+    border: 3px solid transparent;
+    padding: 10px;
+    margin-top: 10px;
+}
+#appearance .board-background{
+    height: calc(0.15*400px);
+    width: calc(0.15*400px);
+    border-radius: 10%; 
+}
+#appearance .label{
+    text-align: center;
+    margin: 0 auto 12px auto;
+    width: fit-content;
+    padding: 1px 3px;
+}
+#appearance .bordered{
+   border: 3px solid var(--blue);
+}
+#appearance .colored{
+    background: var(--blue);
+    color: #fff;
+}
+#appearance label{
+    display: flex;
+    align-items:center;
+}
+
+
+#statistics{
+    padding-top: 10px; width: 500px;
+}
+
+#statistics, #statistics #overall {
+    display: flex;
+}
+#statistics #tab-names{
+    border: 1px solid #aaaaaa;
+    background: #fff;
+    height: 65px; width: 150px; 
+    margin-right: 5px;
+}
+#statistics #tab-names:hover{
+    cursor: default;
+}
+#statistics table{
+    margin-left: 30px;
+    border-collapse: collapse;
+    text-align: center;
+    width: 300px;
+}
+#statistics table .lastrow{
+    border-top: 1px solid #808080;
+}
+
+#statistics #best-scores{
+    border: 1px solid var(--score-border);
+    height:90px; width: 180px; 
+    padding-left: 12px;
+    margin-top: 6px;
+    margin-right: 10px;
+}
+#statistics #best-scores>div{
+    background: #f7f2f2;
+    width: fit-content;
+    margin: -7px auto 3px -10px;
+    padding: 0 5px;
+}
+#statistics #best-scores >li{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2px;
+    padding-right: 5px;
+}
+#statistics #games-played li{
+    margin-bottom: 3px;
+}
+
+
+
+#score-table table{
+    margin: 0 auto;
+    table-layout: auto;
+    border-collapse: collapse;
+}
+#score-table table td{
+    padding:2px 5px;
+    text-align: center;
+}
+#score-table table .col1{
+    padding-right: 15px;
+    font-weight: bold;
+}
+#score-table table thead .col1{
+    font-weight: normal;
+}
+
+#score-table table .lastrow{
+    padding-top: 5px;
+    border-top: 1px solid gray;
+}
+#score-table button{
+    margin:4% ;
+    margin-right: 7%;
+    font-size: 0.9em;
+    padding: 3px;
+    float: right;
+}
+#gameover p{
+    text-align: center;
+    margin: 10px 0 15px 0;
+}
+
+#gameover ul{
+    border: 1px solid var(--score-border);
+    width: 290px;
+    margin-bottom: 10px;
+}
+#gameover ul div{
+    margin-top: -7px;
+    margin-left: 5px;
+    background:var(--info-bg);
+    width: fit-content;
+    padding: 0 1px;
+}
+#gameover ul li{
+    width: 50%;
+    margin: 12px;
+    display: grid;
+    grid-template-columns: repeat(12,1fr);
+}
+#gameover ul li span:last-child{
+    grid-column: 10/13;
+}
+#gameover article{
+    display: grid;
+    width: 290px;
+    grid-template-columns: repeat(12,1fr);
+    grid-template-rows: repeat(3,1fr);
+    row-gap: 7px;
+    margin-left: 5px;
+}
+#gameover #best{
+    grid-column: 1/6;
+    grid-row: 1/2;
+}
+#gameover #played{
+    grid-column: 1/6;
+    grid-row: 2/3;
+}
+#gameover #won{
+    grid-column: 1/6;
+    grid-row: 3/4;
+}
+#gameover #date{
+    grid-column: 7/12;
+    grid-row: 1/2;
+}
+#gameover #perc{
+    grid-column: 7/12;
+    grid-row: 3/4;
+}
+
