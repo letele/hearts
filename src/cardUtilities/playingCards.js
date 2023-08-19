@@ -1,86 +1,63 @@
-import {cartesian, range, shuffleArray, splitArray,eqArray} from '../utilities'
-import selectOne from './selectOne'
-import compDiscardIII from './compDiscardIII'
-import compDiscardI from './compDiscardI'
+import { cartesian,range,shuffleArray,splitArray } from '@letele/ecmascripts';
+import { selectIIICards } from '.';
 
-function playingCards() {
+export function playingCards(){
 
-    const suits =  ['♣', '♦', '♠', '♥']
+    // Define card dimensions 5:7
+    const cardWidth = 6
+	const cardHeight = 1.4*cardWidth
+
+    // Generate deck of cards
+	const ranks =  [...range(2,10,1).map(String),'j','q','k','a']
+	const suits = ['C','D','S','H']
+    const deck = cartesian([suits ,ranks]).map(i => i.join(''))
+
+    // Order cards by ranks
+    const orderCardsByRank = arr =>
+    arr.sort((a,b) => ranks.indexOf(a.slice(1)) - ranks.indexOf(b.slice(1)))
     
-    // Order of card values
-    const ranks = [...range(2,10,1).map(String),"J", "Q", "K", "A"]
+    // Group cards by hearts order : C,D,S, H
+    const groupCards = arr => orderCardsByRank(arr)
+    .sort((a,b) => suits.indexOf(a[0]) - suits.indexOf(b[0]))
 
-    // Compile Cards using suits and values
-    const deck = cartesian([ranks,suits])
-
-    // deal all cards to n players
-    const heartsDealer = (n) => {
-        const [north,east,west,south] = [
-            ...splitArray(shuffleArray(deck),Math.floor(52/n))
-        ]
-        return {north,east,west,south}
-    }
-
-    // group according to respective group 
-    const groupHand = hand => {
+    // Group cardsaccording to respective suit 
+    const groupbySuit = hand => {
         return {
-            diamonds: {
-                id: '♦',
-                hand: hand.filter(i => i[1] === '♦')
-            },
-            spades: {
-                id:'♠',
-                hand:hand.filter(i => i[1] === '♠')
-            },
             clubs: {
-                id: '♣',
-                hand: hand.filter(i => i[1] === '♣')
+                id:'C',
+                hand:hand.filter(i => i[0] === 'C')
+            },
+            diamonds: {
+                id:'D',
+                hand:hand.filter(i => i[0] === 'D')
             },
             hearts: {
-                id: '♥',
-                hand:hand.filter(i => i[1] === '♥')
+                id:'H',
+                hand:hand.filter(i => i[0] === 'H')
+            },
+            spades: {
+                id:'S',
+                hand:hand.filter(i => i[0] === 'S')
             }
         }
     }
-    // group hand according to respective suit 
-    const groupHandbySuit = hand => {
-        return {
-            clubs: hand.filter(i => i[1] === '♣'),
-            spades: hand.filter(i => i[1] === '♠'),
-            hearts: hand.filter(i => i[1] === '♥'),
-            diamonds: hand.filter(i => i[1] === '♦'),
-        }
-    }
-
     
-    // Order cards by ranks
-    const orderCardsByRank = arr =>
-    arr.sort((a,b) => ranks.indexOf(a[0]) - ranks.indexOf(b[0]))
-    
-    // Sorts cards for Hearts game
+    // Sorts cards with same suit
     const sort = (arr,suit) => 
-    orderCardsByRank(arr).filter(i => i[1] === suit)
+    orderCardsByRank(arr).filter(i => i[0] === suit)
 
-    // Groups hand by suits 
-    const group = arr => suits.map(i =>sort(arr,i))
-    
-    const threeSelector = hand => compDiscardIII(group(hand))
-    
-    const oneSelector = (active, hand) => selectOne(active, hand)
+    // Function that deals cards to 4 players
+    const heartsDealer = () => {
+        // Split deck in 4 hands of 13 shuffled cards
+        const [west,north,east,south] =  splitArray(shuffleArray(deck),13)
 
-    const players = ['west','north','east','south']
-      
-    const orderOfPlayers = (activeCard,allCards) => {
-        
-        const playerToStart = (activeCard,cards) => Object.entries(cards)
-        .map(([key,val]) => val.some(i =>eqArray(i, activeCard)) && key)
-        .reduce((prev, current) => current ? current:prev)
-
-        const firstPlayer = players.indexOf(playerToStart(activeCard,allCards))   
-
-        return  players.map((i,j) => players[(j+firstPlayer)%players.length])
+        return {north,east,west,south: groupCards(south)}
     }
 
+    // Players
+    const players = ['west','north','east','south']
+
+    // Turn of players
     const turns = {
         north: ['west', 'east', 'south', 'north'],
         east: ['north', 'south', 'west', 'east'],
@@ -88,37 +65,45 @@ function playingCards() {
         south: ['east', 'west', 'north', 'south'],
     }
 
-    const swapCards = (player,pcards,cards,hand) => {
+    // Function that swaps cards in each round
+    const swapCards = (player,southIIICards,allCards,hand) => {
          
-        const select = player==="south" ? 
-        pcards : threeSelector(cards[`${player}Cards`]) 
+        const selectedCards = player==="south" ? 
+        southIIICards : selectIIICards(allCards[`${player}Cards`]) 
 
         const turn = turns[player][hand%4]
-        let toPass = turn === "south" ?
-        pcards : threeSelector(cards[`${turn}Cards`])
         
-        toPass = toPass.map(i => [...i,'passed'])
+        let toPass = turn === "south" ?
+        southIIICards : selectIIICards(allCards[`${turn}Cards`])
+  
         return [
-            ...cards[`${player}Cards`].filter(i => !select.includes(i)),
+            ...allCards[`${player}Cards`].filter(i => !selectedCards.includes(i)),
             ...toPass
         ]  
     }
 
+    // Function that orders players
+    const orderOfPlayers = (activeCard,allCards) => {
+        
+        const playerToStart = (activeCard,cards) => Object.entries(cards)
+        .map(([key,val]) => val.some(i =>i===activeCard) && key)
+        .reduce((prev, current) => current ? current:prev)
+
+        const firstPlayer = players.indexOf(playerToStart(activeCard,allCards))   
+
+        return  players.map((i,j) => players[(j+firstPlayer)%players.length])
+    }
+
     return {
+        cardWidth,cardHeight,
+        ranks,
+        orderCardsByRank,
+        sort,
         heartsDealer,
         players,
-        threeSelector,
-        swapCards,
-        oneSelector,
         orderOfPlayers,
-        orderCardsByRank,
-        compDiscardI,
-        groupHandbySuit,
-        shuffleArray,
-        group,
-        groupHand,
-        sort,
+        groupCards,
+        groupbySuit,
+        swapCards,
     }
 }
-
-export default playingCards

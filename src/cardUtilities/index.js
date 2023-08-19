@@ -1,7 +1,10 @@
-import playingCards from './playingCards'
-import heartScores from './heartScores'
+export { heartScores } from "./heartscores";
 
-export {  
-    playingCards, 
-    heartScores,
-}
+export {compDiscard} from "./compDiscard";
+
+export { selectICard } from "./selectICard";
+
+export { selectIIICards } from "./selectIIICards";
+
+export { playingCards } from "./playingCards";
+

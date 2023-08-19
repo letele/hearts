@@ -1,12 +1,8 @@
+export function heartScores() {
 
-function heartScores() {
-
-    const cardScores = cards => {
-        const q = ['Q', '♠']
-        const qPresent = cards.map(i => i.join()).includes(q.join())
-        return qPresent ? 12 + cards.length : cards.length
-    }
-
+    const cardScores = cards => 
+    cards.includes('Sq') ? 12 + cards.length : cards.length
+    
     const scoreOrder = arr=> Object.entries(arr)
     .sort((a,b) => a[1] - b[1])
 
@@ -44,6 +40,3 @@ function heartScores() {
         orderScores,
     }
 }
-
-
-export default heartScores
