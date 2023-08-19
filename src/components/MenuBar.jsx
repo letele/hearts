@@ -69,7 +69,7 @@ export function MenuBar(){
 
 					<MenuLink id="About" name="About" Fkey="F1" />
 			
-					<li className={liClasses} onClick={() => setToggle(False)}>
+					<li className={liClasses} onClick={() => setToggle(false)}>
 						<a href="https://bicyclecards.com/how-to-play/hearts/" 
 							target="_blank" 
 							rel="noopener noreferrer"
@@ -79,7 +79,7 @@ export function MenuBar(){
 					
 					<li className={lineClasses}></li>
 					
-					<li className={liClasses} onClick={() => setToggle(False)}>
+					<li className={liClasses} onClick={() => setToggle(false)}>
 						<a href="https://github.com/letele/hearts" 
 							target="_blank" 
 							rel="noopener noreferrer"
