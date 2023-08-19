@@ -1,7 +1,6 @@
-<h1>
-    <img style="width: 50px; height: 50px;" src="public/hearts.svg" alt="Hearts Icon"> 
-    Hearts Card Game
-</h1>
+
+#  &#128148; Hearts Card Game
+
 
 <p style="font-size: 12pt">
 A React application of the Hearts card game inspired by the Microsoft Windows 7 Hearts card game. 
