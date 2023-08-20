@@ -6,7 +6,10 @@
 A React application of the Hearts card game inspired by the Microsoft Windows 7 Hearts card game. 
 </p>
 
-[![Hearts Card Game Screenshot](public/screenshot.png)](https://letele.github.io/hearts/)
+
+<a href="https://letele.github.io/hearts/" target="_blank" rel="noopener noreferrer">
+  <img  src="public/screenshot.png" alt="Vite logo">
+</a>
 
 
 <p style="font-size: 12pt">
