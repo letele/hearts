@@ -76,7 +76,7 @@ export const withModal = (title) => Component => props => {
         `
         const buttonClassesII = `
             m-auto-10px mw-90px p-2px-5px fs-9pt bd-aaaaaa bg-8686863d 
-            ${!tab && 'hov-bd0078d7'}
+            
         `
         return (
             <footer className="p-10px txt-right">
@@ -93,7 +93,7 @@ export const withModal = (title) => Component => props => {
                     onClick={handleAppearance}
                 >OK</button>
                 <button 
-                    className={buttonClassesII}
+                    className={`${buttonClassesII} hov-bd0078d7`}
                     onClick={() => {
                         setChecked(false)   
                         setToggle(false)
@@ -107,14 +107,16 @@ export const withModal = (title) => Component => props => {
                     onClick={() => setToggle(false)}
                 >Close</button>
                 <button 
-                    className={buttonClassesII}
+                    className={`${buttonClassesII} ${!tab && 'hov-bd0078d7' }`}
                     disabled={tab}
                     onClick={resetScores}
                 >Reset</button>
                 </>}
             
                 {toggle==='Exit' && <> 
-                <button className={buttonClassesII} onClick={closeTab}
+                <button 
+                    className={`${buttonClassesII} hov-bd0078d7`}
+                    onClick={closeTab}
                 >Exit</button>
                 <button className={buttonClasses} onClick={() => setToggle(false)}
                 >Cancel</button>
@@ -128,17 +130,13 @@ export const withModal = (title) => Component => props => {
                 {toggle==='GameOver' && <>
                 <button className={buttonClasses} onClick={handleNewGame}>Play again</button> 
                 <button 
-                    className={buttonClassesII} 
+                    className={`${buttonClassesII} hov-bd0078d7`} 
                     onClick={closeTab}>
                 Exit</button> 
                 </>}
             </footer>
         )
     }
-
-        
-
-
     
     const articleClasses = `
         w-fcnt bd-aaaaaa mw-210px m-auto mt-108px bg-ececec ff-arial fs-9pt 
