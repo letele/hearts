@@ -1,15 +1,11 @@
 
 #  &#128148; Hearts Card Game
 
-
 <p style="font-size: 12pt">
 A React application of the Hearts card game inspired by the Microsoft Windows 7 Hearts card game. 
 </p>
 
-
-<img  src="public/screenshot.png" alt="Vite logo">
-
-
+![Hearts Image screenshot](public/screenshot.png)
 
 <p style="font-size: 12pt">
   <a href="https://vitejs.dev" target="_blank" rel="noopener noreferrer">
