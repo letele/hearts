@@ -54,7 +54,7 @@ export function MenuBar(){
 					
 					<li className={lineClasses}></li>
 					
-					<MenuLink id="Exit" name="Exit" Fkey="F5" />
+					<MenuLink id="Exit" name="Exit" />
 				</ul>}
 			</li>
 			<li>
